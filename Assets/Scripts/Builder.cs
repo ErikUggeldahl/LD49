@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Builder : MonoBehaviour
 {
@@ -7,10 +8,31 @@ public class Builder : MonoBehaviour
     new Camera camera;
 
     [SerializeField]
+    Transform buildingPiecesParent;
+
+    [SerializeField]
+    Transform previewPiecesParent;
+
+    [SerializeField]
     GameObject wallPrefab;
 
     [SerializeField]
     Material previewMaterial;
+
+    [Header("UI Elements")]
+    [SerializeField]
+    Text symmetryDisplay;
+
+    [SerializeField]
+    Text heightDisplay;
+
+    [SerializeField]
+    Text turnDisplay;
+
+    [SerializeField]
+    GameObject awaitingDisplay;
+
+    int turnCount = 0;
 
     const int MAX_RADIAL = 24;
     int radialCount = 4;
@@ -24,6 +46,8 @@ public class Builder : MonoBehaviour
     int LAYER_PREVIEW;
     int RAYCAST_MASK;
 
+    bool allPiecesAsleepLastIteration = true;
+
     List<GameObject> previewObjects = new List<GameObject>(MAX_RADIAL);
 
     void Start()
@@ -36,7 +60,7 @@ public class Builder : MonoBehaviour
 
         for (int i = 0; i < MAX_RADIAL; i++)
         {
-            var preview = Instantiate(wallPrefab);
+            var preview = Instantiate(wallPrefab, previewPiecesParent);
             preview.name = "Preview " + wallPrefab.name + " " + i;
             foreach (var child in preview.GetComponentsInChildren<Transform>(true))
             {
@@ -68,9 +92,10 @@ public class Builder : MonoBehaviour
         {
             previewObjects[i].SetActive(i < radialCount);
         }
+        symmetryDisplay.text = radialCount.ToString();
     }
 
-    void HandleRadialAdjust()
+    void HandleRadialCountAdjust()
     {
         var scroll = Mathf.Clamp(Input.mouseScrollDelta.y, -1.0f, 1.0f);
         var newRadialCount = Mathf.Clamp(radialCount + (int)scroll, 1, MAX_RADIAL);
@@ -115,10 +140,48 @@ public class Builder : MonoBehaviour
         }
     }
 
+    void CalculateScore()
+    {
+        var highestY = 0f;
+        foreach (Transform transform in buildingPiecesParent)
+        {
+            var buildingPiece = transform.GetComponent<BuildingPiece>();
+            var yExtent = transform.position.y + buildingPiece.height;
+            if (yExtent > highestY)
+            {
+                highestY = yExtent;
+            }
+        }
+        heightDisplay.text = Mathf.CeilToInt(highestY).ToString();
+    }
+
+    void AssessBuildingPieceActivity()
+    {
+        if (allPiecesAsleepLastIteration) return;
+
+        var allAsleep = true;
+        foreach (var rigidbody in buildingPiecesParent.GetComponentsInChildren<Rigidbody>())
+        {
+            if (rigidbody.IsSleeping())
+            {
+                rigidbody.GetComponentInChildren<Renderer>().material.color = Color.white;
+            }
+            else
+            {
+                allAsleep = false;
+                rigidbody.GetComponentInChildren<Renderer>().material.color = Color.red;
+            }
+        }
+        awaitingDisplay.SetActive(!allAsleep);
+        allPiecesAsleepLastIteration = allAsleep;
+    }
+
     void Update()
     {
-        HandleRadialAdjust();
+        HandleRadialCountAdjust();
         HandleLocalRotationOffset();
+        CalculateScore();
+        AssessBuildingPieceActivity();
 
         RaycastHit hit;
         var ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -144,13 +207,18 @@ public class Builder : MonoBehaviour
             previewObjects[i].transform.rotation = rotation;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (allPiecesAsleepLastIteration && Input.GetMouseButtonDown(0))
         {
             for (int i = 0; i < radialCount; i++)
             {
-                var placedObject = Instantiate(wallPrefab, previewObjects[i].transform.position, previewObjects[i].transform.rotation);
+                var placedObject = Instantiate(wallPrefab, previewObjects[i].transform.position, previewObjects[i].transform.rotation, buildingPiecesParent);
                 placedObject.GetComponent<Rigidbody>().isKinematic = false;
             }
+
+            allPiecesAsleepLastIteration = false;
+
+            turnCount++;
+            turnDisplay.text = turnCount.ToString();
         }
     }
 }
