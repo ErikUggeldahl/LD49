@@ -72,3 +72,4 @@ crashlytics-build.properties
 # Blender auto backup files
 *.blend[1-9]
 *.blend[1-9].meta
+AssetSrc/Textures/
