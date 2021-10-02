@@ -17,6 +17,9 @@ public class Builder : MonoBehaviour
     GameObject wallPrefab;
 
     [SerializeField]
+    GameObject wallPreviewPrefab;
+
+    [SerializeField]
     Material previewMaterial;
 
     [Header("UI Elements")]
@@ -60,8 +63,8 @@ public class Builder : MonoBehaviour
 
         for (int i = 0; i < MAX_RADIAL; i++)
         {
-            var preview = Instantiate(wallPrefab, previewPiecesParent);
-            preview.name = "Preview " + wallPrefab.name + " " + i;
+            var preview = Instantiate(wallPreviewPrefab, previewPiecesParent);
+            preview.name = wallPreviewPrefab.name + " " + i;
             foreach (var child in preview.GetComponentsInChildren<Transform>(true))
             {
                 child.gameObject.layer = LAYER_PREVIEW;
@@ -78,6 +81,7 @@ public class Builder : MonoBehaviour
             {
                 renderer.material = previewMaterial;
             }
+            // Destroy(preview.GetComponent<Build>)
 
             previewObjects.Add(preview);
         }
@@ -176,12 +180,32 @@ public class Builder : MonoBehaviour
         allPiecesAsleepLastIteration = allAsleep;
     }
 
+    void HandleTurnSkip()
+    {
+        if (allPiecesAsleepLastIteration && Input.GetKeyDown(KeyCode.Z))
+        {
+            AdvanceTurn();
+        }
+    }
+
+    void AdvanceTurn()
+    {
+        turnCount++;
+        turnDisplay.text = turnCount.ToString();
+
+        foreach (var constructor in buildingPiecesParent.GetComponentsInChildren<BuildingConstructor>())
+        {
+            constructor.AdvanceLayer();
+        }
+    }
+
     void Update()
     {
         HandleRadialCountAdjust();
         HandleLocalRotationOffset();
         CalculateScore();
         AssessBuildingPieceActivity();
+        HandleTurnSkip();
 
         RaycastHit hit;
         var ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -212,13 +236,12 @@ public class Builder : MonoBehaviour
             for (int i = 0; i < radialCount; i++)
             {
                 var placedObject = Instantiate(wallPrefab, previewObjects[i].transform.position, previewObjects[i].transform.rotation, buildingPiecesParent);
-                placedObject.GetComponent<Rigidbody>().isKinematic = false;
+                //placedObject.GetComponent<Rigidbody>().isKinematic = false;
             }
 
             allPiecesAsleepLastIteration = false;
 
-            turnCount++;
-            turnDisplay.text = turnCount.ToString();
+            AdvanceTurn();
         }
     }
 }
