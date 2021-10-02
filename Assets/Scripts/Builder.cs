@@ -15,6 +15,10 @@ public class Builder : MonoBehaviour
     const int MAX_RADIAL = 24;
     int radialCount = 4;
 
+    const float LOCAL_ROTATION_DEG_PER_SEC = 90f;
+    const float LOCAL_ROTATION_MOUSE_FACTOR = 3f;
+    float localRotationOffset = 0f;
+
     int LAYER_GROUND;
     int LAYER_BUILDING_PIECE;
     int LAYER_PREVIEW;
@@ -66,14 +70,55 @@ public class Builder : MonoBehaviour
         }
     }
 
-    void Update()
+    void HandleRadialAdjust()
     {
         var scroll = Mathf.Clamp(Input.mouseScrollDelta.y, -1.0f, 1.0f);
         var newRadialCount = Mathf.Clamp(radialCount + (int)scroll, 1, MAX_RADIAL);
         if (newRadialCount != radialCount)
         {
             SetRadialCount(newRadialCount);
-        }    
+        }
+    }
+
+    void HandleLocalRotationOffset()
+    {
+        var localRotationDelta = 0f;
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            if (Input.GetKey(KeyCode.Q))
+            {
+                localRotationDelta -= 1f;
+            }
+            if (Input.GetKey(KeyCode.E))
+            {
+                localRotationDelta += 1f;
+            }
+            localRotationDelta += Input.GetAxis("Mouse X") * LOCAL_ROTATION_MOUSE_FACTOR;
+            localRotationOffset += localRotationDelta * LOCAL_ROTATION_DEG_PER_SEC * Time.deltaTime;
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                localRotationDelta -= 45f;
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                localRotationDelta += 45f;
+            }
+            localRotationOffset += localRotationDelta;
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            localRotationOffset = 0f;
+        }
+    }
+
+    void Update()
+    {
+        HandleRadialAdjust();
+        HandleLocalRotationOffset();
 
         RaycastHit hit;
         var ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -81,18 +126,21 @@ public class Builder : MonoBehaviour
 
         if (!isHit) return;
 
+        var floorPosition = Input.GetKey(KeyCode.LeftControl) ? previewObjects[0].transform.position : hit.point;
+        floorPosition.y = 0;
+
         for (var i = 0; i < radialCount; i++)
         {
-            var floorPosition = hit.point;
-            floorPosition.y = 0;
-
             var degrees = 360f / radialCount;
             var position = Quaternion.Euler(0f, degrees * i, 0f) * floorPosition;
             var rotation = Quaternion.LookRotation(position, Vector3.up);
+            rotation *= Quaternion.Euler(0f, localRotationOffset, 0f);
 
-            position.y = hit.point.y;
-
-            previewObjects[i].transform.position = position;
+            if (!Input.GetKey(KeyCode.LeftControl))
+            {
+                position.y = hit.point.y;
+                previewObjects[i].transform.position = position;
+            }
             previewObjects[i].transform.rotation = rotation;
         }
 
