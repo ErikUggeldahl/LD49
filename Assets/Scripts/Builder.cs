@@ -75,23 +75,6 @@ public class Builder : MonoBehaviour
         {
             var preview = Instantiate(wallPreviewPrefab, previewPiecesParent);
             preview.name = wallPreviewPrefab.name + " " + i;
-            foreach (var child in preview.GetComponentsInChildren<Transform>(true))
-            {
-                child.gameObject.layer = LAYER_PREVIEW;
-            }
-            foreach (var rb in preview.GetComponentsInChildren<Rigidbody>())
-            {
-                Destroy(rb);
-            }
-            foreach (var collider in preview.GetComponentsInChildren<Collider>())
-            {
-                Destroy(collider);
-            }
-            foreach (var renderer in preview.GetComponentsInChildren<Renderer>())
-            {
-                renderer.material = previewMaterial;
-            }
-            // Destroy(preview.GetComponent<Build>)
 
             previewObjects.Add(preview);
         }
