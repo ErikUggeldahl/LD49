@@ -53,6 +53,16 @@ public class Builder : MonoBehaviour
 
     List<GameObject> previewObjects = new List<GameObject>(MAX_RADIAL);
 
+    public void AwakenBuildingPieces()
+    {
+        allPiecesAsleepLastIteration = false;
+
+        foreach (var rigidbody in buildingPiecesParent.GetComponentsInChildren<Rigidbody>())
+        {
+            rigidbody.WakeUp();
+        }
+    }
+
     void Start()
     {
         LAYER_GROUND = LayerMask.NameToLayer("Ground");
