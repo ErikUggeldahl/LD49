@@ -39,6 +39,9 @@ public class Builder : MonoBehaviour
     bool ableToBuild = true;
     BuildingPiece pieceToBuild;
 
+    const float MINOR_PUSH_FORCE = 5000f;
+    const float MASSIVE_PUSH_FORCE = 35000f;
+
     int turnCount = 0;
     int highestTower = 0;
 
@@ -299,6 +302,16 @@ public class Builder : MonoBehaviour
         if (allPiecesAsleepLastIteration && !Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.F) && hit.collider.gameObject.layer == LayerMask.NameToLayer("BuildingPiece"))
         {
             hit.collider.GetComponentInParent<BuildingPiece>().ToggleMarkForDestruction();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            hit.rigidbody?.AddForce(ray.direction * MINOR_PUSH_FORCE, ForceMode.Impulse);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            hit.rigidbody?.AddForce(ray.direction * MASSIVE_PUSH_FORCE, ForceMode.Impulse);
         }
     }
 }
