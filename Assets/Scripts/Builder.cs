@@ -20,6 +20,9 @@ public class Builder : MonoBehaviour
     [SerializeField]
     Transform peopleParent;
 
+    [SerializeField]
+    Transform bricksParent;
+
     [Header("UI Elements")]
     [SerializeField]
     Text symmetryDisplay;
@@ -150,6 +153,17 @@ public class Builder : MonoBehaviour
         }
     }
 
+    void HandleDestroyAllBricks()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.F))
+        {
+            foreach (Transform child in bricksParent)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+    }
+
     void CalculateScore()
     {
         var highestY = 0f;
@@ -239,6 +253,7 @@ public class Builder : MonoBehaviour
     {
         HandleRadialCountAdjust();
         HandleLocalRotationOffset();
+        HandleDestroyAllBricks();
         CalculateScore();
         AssessBuildingPieceActivity();
         HandleTurnSkip();

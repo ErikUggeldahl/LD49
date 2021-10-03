@@ -1977,6 +1977,7 @@ MonoBehaviour:
   buildingPiecesParent: {fileID: 1838801307}
   previewPiecesParent: {fileID: 1208352644}
   peopleParent: {fileID: 1741846055}
+  bricksParent: {fileID: 1513589869}
   symmetryDisplay: {fileID: 1254897017}
   heightDisplay: {fileID: 1977605193}
   turnDisplay: {fileID: 195249936}
