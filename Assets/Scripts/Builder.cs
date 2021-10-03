@@ -182,6 +182,7 @@ public class Builder : MonoBehaviour
     {
         if (allPiecesAsleepLastIteration && Input.GetKeyDown(KeyCode.Z))
         {
+            AwakenBuildingPieces();
             AdvanceTurn();
         }
     }
@@ -195,6 +196,14 @@ public class Builder : MonoBehaviour
         {
             constructor.AdvanceLayer();
         }
+
+        foreach (var piece in buildingPiecesParent.GetComponentsInChildren<BuildingPiece>())
+        {
+            if (piece.markedForDestruction)
+            {
+                Destroy(piece.gameObject);
+            }
+        }    
     }
 
     void Update()
@@ -241,6 +250,11 @@ public class Builder : MonoBehaviour
             allPiecesAsleepLastIteration = false;
 
             AdvanceTurn();
+        }
+
+        if (allPiecesAsleepLastIteration && Input.GetKeyDown(KeyCode.F) && hit.collider.gameObject.layer == LayerMask.NameToLayer("BuildingPiece"))
+        {
+            hit.collider.GetComponentInParent<BuildingPiece>().ToggleMarkForDestruction();
         }
     }
 }
