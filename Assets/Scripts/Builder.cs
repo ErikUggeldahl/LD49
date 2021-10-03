@@ -257,7 +257,7 @@ public class Builder : MonoBehaviour
             AdvanceTurn();
         }
 
-        if (allPiecesAsleepLastIteration && Input.GetKeyDown(KeyCode.F) && hit.collider.gameObject.layer == LayerMask.NameToLayer("BuildingPiece"))
+        if (allPiecesAsleepLastIteration && !Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.F) && hit.collider.gameObject.layer == LayerMask.NameToLayer("BuildingPiece"))
         {
             hit.collider.GetComponentInParent<BuildingPiece>().ToggleMarkForDestruction();
         }

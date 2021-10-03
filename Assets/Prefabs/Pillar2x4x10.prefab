@@ -1430,6 +1430,7 @@ MonoBehaviour:
   prefab: {fileID: 0}
   previewPrefab: {fileID: 7500863081545868909, guid: 589c0f2fa29e7cc40a089c2c73f92cf4, type: 3}
   markedForDestruction: 0
+  brickPrefab: {fileID: 5375475301369351493, guid: b36f4941e2186f848bb6492f43f45253, type: 3}
 --- !u!114 &4629728779781908928
 MonoBehaviour:
   m_ObjectHideFlags: 0

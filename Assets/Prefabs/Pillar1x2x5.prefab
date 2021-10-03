@@ -870,6 +870,7 @@ MonoBehaviour:
   prefab: {fileID: 0}
   previewPrefab: {fileID: 2270230923273443802, guid: a9d3928c3a76f874aa1a7eee3b0dbc29, type: 3}
   markedForDestruction: 0
+  brickPrefab: {fileID: 5375475301369351493, guid: b36f4941e2186f848bb6492f43f45253, type: 3}
 --- !u!114 &4629728779781908928
 MonoBehaviour:
   m_ObjectHideFlags: 0
