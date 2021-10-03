@@ -19,6 +19,10 @@ public class DisasterCoordinator : MonoBehaviour
     [SerializeField]
     float earthquakePeriod;
 
+    [Header("Lightning")]
+    [SerializeField]
+    GameObject thunderPrefab;
+
     void Start()
     {
     }
@@ -29,11 +33,21 @@ public class DisasterCoordinator : MonoBehaviour
         {
             StartEarthquake();
         }
+
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            SpawnThunder();
+        }
     }
 
     void StartEarthquake()
     {
         StartCoroutine(Earthquake());
+    }
+
+    void SpawnThunder()
+    {
+        Instantiate(thunderPrefab, Random.insideUnitSphere * 100f + new Vector3(0f, 1000f, 0f), Quaternion.identity);
     }
 
     IEnumerator Earthquake()

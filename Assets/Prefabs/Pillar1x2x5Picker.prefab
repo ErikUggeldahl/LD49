@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pillar1x2x5Picker
       objectReference: {fileID: 0}
+    - target: {fileID: 9025235857032659443, guid: a64b1632490144742aa311264db63a68, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6851944568997089195, guid: a64b1632490144742aa311264db63a68, type: 3}
     - {fileID: 4629728779781908928, guid: a64b1632490144742aa311264db63a68, type: 3}

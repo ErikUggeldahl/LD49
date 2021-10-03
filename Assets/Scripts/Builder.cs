@@ -197,6 +197,11 @@ public class Builder : MonoBehaviour
             constructor.AdvanceLayer();
         }
 
+        foreach (var thunderCloud in FindObjectsOfType<ThunderCloud>())
+        {
+            thunderCloud.Advance();
+        }
+
         foreach (var piece in buildingPiecesParent.GetComponentsInChildren<BuildingPiece>())
         {
             if (piece.markedForDestruction)

@@ -13,8 +13,6 @@ public class PickablePiece : MonoBehaviour
     Color colorPicked = Color.green;
     Color colorHighlighted = Color.yellow;
 
-    bool highlighted = false;
-
     public BuildingPiece piece;
     Renderer[] renderers;
 

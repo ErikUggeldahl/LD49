@@ -181,6 +181,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall10x10x4Picker
       objectReference: {fileID: 0}
+    - target: {fileID: 9025235857032659443, guid: a61d2bb994c023a4da26aae00532877a, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6851944568997089195, guid: a61d2bb994c023a4da26aae00532877a, type: 3}
     - {fileID: 4629728779781908928, guid: a61d2bb994c023a4da26aae00532877a, type: 3}

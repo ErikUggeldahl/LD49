@@ -1376,7 +1376,7 @@ GameObject:
   - component: {fileID: -424615668711590991}
   m_Layer: 7
   m_Name: Pillar2x4x10
-  m_TagString: Untagged
+  m_TagString: BuildingPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1429,6 +1429,7 @@ MonoBehaviour:
   height: 10
   prefab: {fileID: 0}
   previewPrefab: {fileID: 7500863081545868909, guid: 589c0f2fa29e7cc40a089c2c73f92cf4, type: 3}
+  markedForDestruction: 0
 --- !u!114 &4629728779781908928
 MonoBehaviour:
   m_ObjectHideFlags: 0
