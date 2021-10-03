@@ -9,6 +9,9 @@ public class Builder : MonoBehaviour
     new Camera camera;
 
     [SerializeField]
+    DisasterCoordinator disasters;
+
+    [SerializeField]
     GameObject personPrefab;
 
     [Header("Parent Objects")]
@@ -258,7 +261,25 @@ public class Builder : MonoBehaviour
             {
                 Destroy(piece.gameObject);
             }
-        }    
+        }
+
+        if (highestTower >= 50 && turnCount % 20 == 0)
+        {
+            disasters.SpawnThunder();
+            if (highestTower >= 125)
+            {
+                disasters.SpawnThunder();
+            }
+            if (highestTower >= 200)
+            {
+                disasters.SpawnThunder();
+            }
+        }
+
+        if (highestTower >= 100 && turnCount % 50 == 0)
+        {
+            disasters.StartEarthquake();
+        }
     }
 
     void Update()

@@ -15,7 +15,7 @@ public class ThunderCloud : MonoBehaviour
     [SerializeField]
     LineRenderer lightningBolt;
 
-    const float LIGHTNING_FORCE = 25000f;
+    public float lightningForce = 35000f;
 
     Ray target;
     bool advanced = false;
@@ -23,6 +23,11 @@ public class ThunderCloud : MonoBehaviour
     public void Advance()
     {
         advanced = true;
+    }
+
+    public void SetForce(float force)
+    {
+        lightningForce = force;
     }
 
     void Start()
@@ -71,7 +76,7 @@ public class ThunderCloud : MonoBehaviour
             yield return null;
         }
 
-        hit.collider.attachedRigidbody.AddForce(target.direction * LIGHTNING_FORCE, ForceMode.Impulse);
+        hit.collider.attachedRigidbody.AddForce(target.direction * lightningForce, ForceMode.Impulse);
 
         InitializeLightningBolt(hit.point);
 

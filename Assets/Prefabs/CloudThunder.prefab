@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1137385018846408672}
   - component: {fileID: 1137385018846408703}
   - component: {fileID: 1137385018846408702}
-  - component: {fileID: 1137385018846408673}
   m_Layer: 0
   m_Name: CloudBulb
   m_TagString: Untagged
@@ -83,19 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1137385018846408673
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137385018846408675}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1137385019597172433
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +93,6 @@ GameObject:
   - component: {fileID: 1137385019597172462}
   - component: {fileID: 1137385019597172461}
   - component: {fileID: 1137385019597172460}
-  - component: {fileID: 1137385019597172463}
   m_Layer: 0
   m_Name: CloudBulb
   m_TagString: Untagged
@@ -179,19 +164,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1137385019597172463
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137385019597172433}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1137385019804195253
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +175,6 @@ GameObject:
   - component: {fileID: 1137385019804195250}
   - component: {fileID: 1137385019804195249}
   - component: {fileID: 1137385019804195248}
-  - component: {fileID: 1137385019804195251}
   m_Layer: 0
   m_Name: CloudBulb
   m_TagString: Untagged
@@ -275,19 +246,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1137385019804195251
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137385019804195253}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1137385019977524802
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +257,6 @@ GameObject:
   - component: {fileID: 1137385019977524830}
   - component: {fileID: 1137385019977524801}
   - component: {fileID: 1137385019977524800}
-  - component: {fileID: 1137385019977524803}
   m_Layer: 0
   m_Name: CloudBulb
   m_TagString: Untagged
@@ -371,19 +328,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1137385019977524803
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137385019977524802}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1137385020059652623
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +339,6 @@ GameObject:
   - component: {fileID: 1137385020059652620}
   - component: {fileID: 1137385020059652619}
   - component: {fileID: 1137385020059652618}
-  - component: {fileID: 1137385020059652621}
   m_Layer: 0
   m_Name: CloudBulb
   m_TagString: Untagged
@@ -467,19 +410,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1137385020059652621
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137385020059652623}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1137385020337997025
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,7 +421,6 @@ GameObject:
   - component: {fileID: 1137385020337997054}
   - component: {fileID: 1137385020337997053}
   - component: {fileID: 1137385020337997052}
-  - component: {fileID: 1137385020337997055}
   m_Layer: 0
   m_Name: CloudBulb
   m_TagString: Untagged
@@ -563,19 +492,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1137385020337997055
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137385020337997025}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1137385020491735484
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +503,6 @@ GameObject:
   - component: {fileID: 1137385020491735485}
   - component: {fileID: 1137385020491735480}
   - component: {fileID: 1137385020491735483}
-  - component: {fileID: 1137385020491735482}
   m_Layer: 0
   m_Name: CloudBulb
   m_TagString: Untagged
@@ -659,19 +574,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1137385020491735482
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137385020491735484}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1137385020644864340
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +585,6 @@ GameObject:
   - component: {fileID: 1137385020644864341}
   - component: {fileID: 1137385020644864336}
   - component: {fileID: 1137385020644864339}
-  - component: {fileID: 1137385020644864338}
   m_Layer: 0
   m_Name: CloudBulb
   m_TagString: Untagged
@@ -755,19 +656,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1137385020644864338
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137385020644864340}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1444790884459813957
 GameObject:
   m_ObjectHideFlags: 0

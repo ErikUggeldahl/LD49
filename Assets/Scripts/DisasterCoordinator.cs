@@ -23,9 +23,8 @@ public class DisasterCoordinator : MonoBehaviour
     [SerializeField]
     GameObject thunderPrefab;
 
-    void Start()
-    {
-    }
+    [SerializeField]
+    float lightningForce = 35000f;
 
     void Update()
     {
@@ -40,14 +39,15 @@ public class DisasterCoordinator : MonoBehaviour
         }
     }
 
-    void StartEarthquake()
+    public void StartEarthquake()
     {
         StartCoroutine(Earthquake());
     }
 
-    void SpawnThunder()
+    public void SpawnThunder()
     {
-        Instantiate(thunderPrefab, Random.insideUnitSphere * 100f + new Vector3(0f, 1000f, 0f), Quaternion.identity);
+        var thunder = Instantiate(thunderPrefab, Random.insideUnitSphere * 100f + new Vector3(0f, 1000f, 0f), Quaternion.identity);
+        thunder.GetComponent<ThunderCloud>().SetForce(lightningForce);
     }
 
     IEnumerator Earthquake()
