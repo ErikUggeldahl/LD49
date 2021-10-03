@@ -1424,7 +1424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1708a596cb40d4ab09328cc519789e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pieceName: 'Wall: 10x10x4'
+  pieceName: Wall 10x10x4
   height: 10
   prefab: {fileID: 0}
   previewPrefab: {fileID: 7890440346207378874, guid: 837ff8dfbede36a4982e0e993a98ebd5, type: 3}

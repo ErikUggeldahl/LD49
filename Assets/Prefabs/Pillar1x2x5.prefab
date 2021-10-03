@@ -865,8 +865,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1708a596cb40d4ab09328cc519789e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pieceName: 'Pillar: 1x2x5'
-  height: 10
+  pieceName: Pillar 1x2x5
+  height: 5
   prefab: {fileID: 0}
   previewPrefab: {fileID: 2270230923273443802, guid: a9d3928c3a76f874aa1a7eee3b0dbc29, type: 3}
 --- !u!114 &4629728779781908928

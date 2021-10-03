@@ -1030,7 +1030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1708a596cb40d4ab09328cc519789e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pieceName: 'Wall: 5x5x2'
+  pieceName: Wall 5x5x2
   height: 5
   prefab: {fileID: 0}
   previewPrefab: {fileID: 5894670907652217809, guid: 221a6f0c3bad34747a6e5b5e3cd07289, type: 3}
