@@ -8,10 +8,17 @@ public class Builder : MonoBehaviour
     new Camera camera;
 
     [SerializeField]
+    GameObject personPrefab;
+
+    [Header("Parent Objects")]
+    [SerializeField]
     Transform buildingPiecesParent;
 
     [SerializeField]
     Transform previewPiecesParent;
+
+    [SerializeField]
+    Transform peopleParent;
 
     [Header("UI Elements")]
     [SerializeField]
@@ -30,6 +37,7 @@ public class Builder : MonoBehaviour
     BuildingPiece pieceToBuild;
 
     int turnCount = 0;
+    int highestTower = 0;
 
     const int MAX_RADIAL = 24;
     int radialCount = 4;
@@ -154,7 +162,23 @@ public class Builder : MonoBehaviour
                 highestY = yExtent;
             }
         }
-        heightDisplay.text = Mathf.CeilToInt(highestY).ToString() + "m";
+
+        var highestYInt = Mathf.CeilToInt(highestY);
+        heightDisplay.text = highestYInt.ToString() + "m";
+
+        if (highestYInt > highestTower)
+        {
+            var difference = highestYInt - highestTower;
+            highestTower = highestYInt;
+
+            for (int i = 0; i < difference; i++)
+            {
+                var randomOnCircle = Random.Range(0, Mathf.PI * 2f);
+                var position = new Vector3(Mathf.Cos(randomOnCircle), 0f, Mathf.Sin(randomOnCircle)) * 200f;
+                var person = Instantiate(personPrefab, position, Quaternion.identity);
+                person.transform.parent = peopleParent;
+            }
+        }
     }
 
     void AssessBuildingPieceActivity()

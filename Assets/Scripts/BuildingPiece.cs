@@ -22,13 +22,17 @@ public class BuildingPiece : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.relativeVelocity.magnitude > TRIGGER_VELOCITY_MAGNITUDE)
+        if (collision.relativeVelocity.magnitude > TRIGGER_VELOCITY_MAGNITUDE &&
+            // Stops bricks from acting like shrapnel everywhere
+            collision.rigidbody?.mass > 50f)
         {
             Destroy(gameObject);
 
+            var parent = GameObject.Find("Bricks").transform;
             for (var i = 0; i < 5; i++)
             {
                 var brick = Instantiate(brickPrefab, transform.position, transform.rotation);
+                brick.transform.parent = parent;
                 var ejectDirection = collision.relativeVelocity / 2f + Random.insideUnitSphere * collision.relativeVelocity.magnitude / 2f;
                 brick.GetComponent<Rigidbody>().AddForce(ejectDirection, ForceMode.VelocityChange);
             }
