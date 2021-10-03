@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Builder : MonoBehaviour
@@ -99,6 +100,14 @@ public class Builder : MonoBehaviour
         RAYCAST_MASK = LayerMask.GetMask("Ground", "BuildingPiece");
 
         SetRadialCount(radialCount);
+    }
+
+    void HandleRestart()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            SceneManager.LoadScene("Game");
+        }
     }
 
     void SetRadialCount(int radialCount)
@@ -254,6 +263,7 @@ public class Builder : MonoBehaviour
 
     void Update()
     {
+        HandleRestart();
         HandleRadialCountAdjust();
         HandleLocalRotationOffset();
         HandleDestroyAllBricks();
