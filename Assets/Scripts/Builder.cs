@@ -13,15 +13,6 @@ public class Builder : MonoBehaviour
     [SerializeField]
     Transform previewPiecesParent;
 
-    [SerializeField]
-    GameObject wallPrefab;
-
-    [SerializeField]
-    GameObject wallPreviewPrefab;
-
-    [SerializeField]
-    Material previewMaterial;
-
     [Header("UI Elements")]
     [SerializeField]
     Text symmetryDisplay;
@@ -35,6 +26,9 @@ public class Builder : MonoBehaviour
     [SerializeField]
     GameObject awaitingDisplay;
 
+    bool ableToBuild = true;
+    BuildingPiece pieceToBuild;
+
     int turnCount = 0;
 
     const int MAX_RADIAL = 24;
@@ -44,9 +38,6 @@ public class Builder : MonoBehaviour
     const float LOCAL_ROTATION_MOUSE_FACTOR = 3f;
     float localRotationOffset = 0f;
 
-    int LAYER_GROUND;
-    int LAYER_BUILDING_PIECE;
-    int LAYER_PREVIEW;
     int RAYCAST_MASK;
 
     bool allPiecesAsleepLastIteration = true;
@@ -63,18 +54,20 @@ public class Builder : MonoBehaviour
         }
     }
 
-    void Start()
+    public void SetBuildingPiece(BuildingPiece piece)
     {
-        LAYER_GROUND = LayerMask.NameToLayer("Ground");
-        LAYER_BUILDING_PIECE = LayerMask.NameToLayer("BuildingPiece");
-        LAYER_PREVIEW = LayerMask.NameToLayer("Preview");
+        foreach (var obj in previewObjects)
+        {
+            Destroy(obj);
+        }
+        previewObjects.Clear();
 
-        RAYCAST_MASK = LayerMask.GetMask("Ground", "BuildingPiece");
+        pieceToBuild = piece;
 
         for (int i = 0; i < MAX_RADIAL; i++)
         {
-            var preview = Instantiate(wallPreviewPrefab, previewPiecesParent);
-            preview.name = wallPreviewPrefab.name + " " + i;
+            var preview = Instantiate(piece.previewPrefab, previewPiecesParent);
+            preview.name = piece.previewPrefab.name + " " + i;
 
             previewObjects.Add(preview);
         }
@@ -82,10 +75,22 @@ public class Builder : MonoBehaviour
         SetRadialCount(radialCount);
     }
 
+    public void AbleToBuild(bool able)
+    {
+        ableToBuild = able;
+    }
+
+    void Start()
+    {
+        RAYCAST_MASK = LayerMask.GetMask("Ground", "BuildingPiece");
+
+        SetRadialCount(radialCount);
+    }
+
     void SetRadialCount(int radialCount)
     {
         this.radialCount = radialCount;
-        for (var i = 0; i < MAX_RADIAL; i++)
+        for (var i = 0; i < previewObjects.Count; i++)
         {
             previewObjects[i].SetActive(i < radialCount);
         }
@@ -149,7 +154,7 @@ public class Builder : MonoBehaviour
                 highestY = yExtent;
             }
         }
-        heightDisplay.text = Mathf.CeilToInt(highestY).ToString();
+        heightDisplay.text = Mathf.CeilToInt(highestY).ToString() + "m";
     }
 
     void AssessBuildingPieceActivity()
@@ -200,6 +205,8 @@ public class Builder : MonoBehaviour
         AssessBuildingPieceActivity();
         HandleTurnSkip();
 
+        if (pieceToBuild == null || !ableToBuild) return;
+
         RaycastHit hit;
         var ray = camera.ScreenPointToRay(Input.mousePosition);
         var isHit = Physics.Raycast(ray, out hit, 1000f, RAYCAST_MASK);
@@ -228,8 +235,7 @@ public class Builder : MonoBehaviour
         {
             for (int i = 0; i < radialCount; i++)
             {
-                var placedObject = Instantiate(wallPrefab, previewObjects[i].transform.position, previewObjects[i].transform.rotation, buildingPiecesParent);
-                //placedObject.GetComponent<Rigidbody>().isKinematic = false;
+                Instantiate(pieceToBuild.prefab, previewObjects[i].transform.position, previewObjects[i].transform.rotation, buildingPiecesParent);
             }
 
             allPiecesAsleepLastIteration = false;

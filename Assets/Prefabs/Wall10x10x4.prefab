@@ -1372,6 +1372,7 @@ GameObject:
   - component: {fileID: 6851944568997089195}
   - component: {fileID: -6628635334053842251}
   - component: {fileID: 4629728779781908928}
+  - component: {fileID: -424615668711590991}
   m_Layer: 7
   m_Name: Wall10x10x4
   m_TagString: Untagged
@@ -1423,7 +1424,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1708a596cb40d4ab09328cc519789e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceName: 'Wall: 10x10x4'
   height: 10
+  prefab: {fileID: 0}
+  previewPrefab: {fileID: 7890440346207378874, guid: 837ff8dfbede36a4982e0e993a98ebd5, type: 3}
 --- !u!114 &4629728779781908928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1438,6 +1442,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaler: {fileID: 5241441202643550670}
   scaffolding: {fileID: 3621843670717800233}
+--- !u!114 &-424615668711590991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9025235857032659443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df62e0d52aa0da8458df29dd4cbd08ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2300970293973920247
 PrefabInstance:
   m_ObjectHideFlags: 0
